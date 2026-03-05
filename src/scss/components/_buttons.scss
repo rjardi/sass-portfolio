@@ -1,0 +1,18 @@
+@use '../abstracts/variables' as *;
+
+.btn {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2.29px;
+  text-transform: uppercase;
+  color: $color-white;
+  padding-bottom: 10px;
+  border-bottom: 2px solid $color-green;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $color-green;
+  }
+}

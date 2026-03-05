@@ -1,0 +1,149 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 80px;
+  border-bottom: 1px solid $color-gray;
+
+  @include tablet {
+    // photo height at 322px wide = 521px + 104px gap = 625px min
+    min-height: 625px;
+    padding-bottom: 60px;
+  }
+
+  @include desktop {
+    // photo height at 445px wide = 720px + 104px gap = 824px min
+    min-height: 824px;
+    padding-bottom: 104px;
+  }
+
+  // Decorative ovals — top left
+  // Positioned lower so they're not under the header
+  &__rings {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  // Profile photo — absolute, behind all content (z-index: 1)
+  // Hero section starts at y:0 because header is position:absolute
+  &__image {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+
+    // Mobile: centered at top of page
+    left: 50%;
+    transform: translateX(-50%);
+    width: 174px;
+
+    @include tablet {
+      // Tablet: flush to right viewport edge
+      left: auto;
+      transform: none;
+      right: 0;
+      width: 322px;
+    }
+
+    @include desktop {
+      // Desktop: respects the container's right margin
+      // calc((100% - container-max-width) / 2) aligns with container right edge
+      right: max(0px, calc((100% - 1110px) / 2));
+      width: 445px;
+    }
+
+    img:not(.hero__circle) {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  // Circle outline decoration — overlaps the left edge of the profile photo
+  &__circle {
+    position: absolute;
+    bottom: 0px;
+    right: -160px;
+    width: 129px;
+    height: auto;
+    pointer-events: none;
+    z-index: 2;
+    
+    @include tablet {
+      left: auto;
+      right: -64px;
+      bottom: 0px;
+    }
+
+    @include desktop {
+      right: auto;
+      left: -64px;
+      width: 129px;
+      bottom: 85px;
+    }
+  }
+
+  // Content sits above photo and rings
+  &__container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    // Mobile: push content below the photo
+    // Photo height at 174px wide ≈ 281px, header ≈ 96px → start below photo
+    padding-top: 300px;
+
+    @include tablet {
+      text-align: left;
+      padding-top: 0;
+    }
+  }
+
+  &__content {
+    @include tablet {
+      max-width: 445px;
+      padding-top: 90px;
+    }
+
+    @include desktop {
+      max-width: 706px;
+      padding-top: 127px;
+    }
+  }
+
+  &__title {
+    @include heading-xl;
+    margin-bottom: 24px;
+
+    @include tablet {
+      margin-bottom: 34px;
+    }
+
+    @include desktop {
+      margin-bottom: 43px;
+    }
+  }
+
+  &__name {
+    border-bottom: 4px solid $color-green;
+  }
+
+  &__description {
+    @include body-text;
+    color: $color-gray;
+    margin-bottom: 24px;
+
+    @include tablet {
+      max-width: 445px;
+      margin-bottom: 34px;
+    }
+
+    @include desktop {
+      margin-bottom: 66px;
+    }
+  }
+}

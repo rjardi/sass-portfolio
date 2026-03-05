@@ -1,0 +1,40 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.projects {
+  padding: 80px 0;
+
+  @include desktop {
+    padding: 140px 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    @include tablet {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__heading {
+    @include heading-xl;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px 24px;
+    }
+
+    @include desktop {
+      gap: 70px 30px;
+    }
+  }
+}

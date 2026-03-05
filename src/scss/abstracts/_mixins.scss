@@ -1,0 +1,64 @@
+@use 'variables' as *;
+
+// Media queries (mobile first)
+@mixin tablet {
+  @media (min-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $bp-desktop) {
+    @content;
+  }
+}
+
+// Typography
+@mixin heading-xl {
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: -1.14px;
+  font-weight: 700;
+
+  @include tablet {
+    font-size: 72px;
+    line-height: 72px;
+    letter-spacing: -2.05px;
+  }
+
+  @include desktop {
+    font-size: $fs-xl;
+    line-height: $lh-xl;
+    letter-spacing: $ls-xl;
+  }
+}
+
+@mixin heading-l {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -1px;
+  font-weight: 700;
+
+  @include tablet {
+    font-size: $fs-l;
+    line-height: $lh-l;
+    letter-spacing: $ls-l;
+  }
+}
+
+@mixin heading-m {
+  font-size: $fs-m;
+  line-height: $lh-m;
+  font-weight: 700;
+}
+
+@mixin body-text {
+  font-size: $fs-body-sm;
+  line-height: 26px;
+  font-weight: 500;
+
+  @include tablet {
+    font-size: $fs-body;
+    line-height: $lh-body;
+  }
+}
