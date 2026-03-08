@@ -6,21 +6,25 @@
   overflow: hidden;
   background-color: $color-dark-gray;
   padding: 60px 0;
+  @include tablet {
+    padding: 60px 0 92px 0;
+  }
 
   &__rings {
     position: absolute;
     z-index: 0;
     pointer-events: none;
-    bottom: 97px; // mobile
+    bottom: 70px; // mobile
     left: 0;
-    transform: translateX(-50%);
 
     @include tablet {
-      bottom: 47px;
+      bottom: 25px;
+      left: -30px;
     }
 
     @include desktop {
-      bottom: 47px;
+      bottom: 40px;
+      left: -205px;
     }
   }
 
@@ -35,21 +39,24 @@
     flex-direction: column;
     gap: 50px;
 
+    @include tablet {
+      width: 445px;
+      padding: 0;
+    }
+
     @include desktop {
       flex-direction: row;
       justify-content: space-between;
       gap: 220px;
+      width: auto;
     }
   }
 
   &__content {
     text-align: center;
 
-    @include tablet {
-      text-align: left;
-    }
-
     @include desktop {
+      text-align: left;
       max-width: 445px;
     }
   }

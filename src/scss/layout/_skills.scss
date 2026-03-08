@@ -3,30 +3,48 @@
 
 .skills {
   position: relative;
-  overflow: hidden;
   padding: 40px 0;
-  border-bottom: 1px solid $color-gray;
 
-  @include tablet {
-    border-bottom: none;
+  // Divider line at bottom (mobile only) — container-width
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background-color: $color-gray;
+
+    @include tablet {
+      display: none;
+    }
   }
 
   @include tablet {
-    padding: 52px 0;
+    padding: 52px 0 20px;
   }
 
   @include desktop {
     padding: 72px 0;
   }
 
-  // Decorative ovals — center right, partially outside viewport
+  // Decorative ovals — right side
   &__rings {
     position: absolute;
-    top: 50%;
-    right: -250px;
-    transform: translateY(-50%);
+    bottom: -64.5px;
+    right: 0px;
+
+    @include tablet {
+      bottom: -50px;
+    }
     z-index: 0;
     pointer-events: none;
+
+    @include desktop {
+      bottom: 25px;
+      right: -265px;
+      transform: none;
+    }
   }
 
   &__container {
@@ -54,7 +72,10 @@
 
   &__title {
     @include heading-l;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
+    @include tablet {
+      margin-bottom: 14px;
+    }
   }
 
   &__experience {

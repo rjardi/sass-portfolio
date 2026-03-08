@@ -3,9 +3,30 @@
 
 .hero {
   position: relative;
-  overflow: hidden;
   padding-bottom: 80px;
-  border-bottom: 1px solid $color-gray;
+
+  // Divider line — container-width (not full viewport)
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background-color: $color-gray;
+
+    @include tablet {
+      left: 30px;
+      right: 30px;
+    }
+
+    @include desktop {
+      left: 50%;
+      right: auto;
+      width: 1110px;
+      transform: translateX(-50%);
+    }
+  }
 
   @include tablet {
     // photo height at 322px wide = 521px + 104px gap = 625px min
@@ -20,14 +41,21 @@
   }
 
   // Decorative ovals — top left
-  // Positioned lower so they're not under the header
   &__rings {
     position: absolute;
-    top: 60px;
+    top: 124px;
     left: 0;
-    transform: translateX(-50%);
     z-index: 0;
     pointer-events: none;
+
+    @include tablet {
+      top: 86px;
+    }
+
+    @include desktop {
+      top: 133px;
+      left: -265px;
+    }
   }
 
   // Profile photo — absolute, behind all content (z-index: 1)
@@ -35,13 +63,14 @@
   &__image {
     position: absolute;
     top: 0;
-    z-index: 1;
-    width: 100%;
+    z-index: 5;
 
     // Mobile: centered at top of page
     left: 50%;
     transform: translateX(-50%);
     width: 174px;
+    height: 383px;
+    background: linear-gradient(180deg, rgba(36, 36, 36, 0.0001) 0.65%, #242424 100%);
 
     @include tablet {
       // Tablet: flush to right viewport edge
@@ -49,18 +78,29 @@
       transform: none;
       right: 0;
       width: 322px;
+      height: auto;
+      background: none;
+      z-index: 1;
     }
 
     @include desktop {
       // Desktop: respects the container's right margin
-      // calc((100% - container-max-width) / 2) aligns with container right edge
       right: max(0px, calc((100% - 1110px) / 2));
       width: 445px;
     }
 
     img:not(.hero__circle) {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: bottom;
       display: block;
+
+      @include tablet {
+        height: auto;
+        object-fit: initial;
+        object-position: initial;
+      }
     }
   }
 
@@ -68,22 +108,19 @@
   &__circle {
     position: absolute;
     bottom: 0px;
-    right: -160px;
+    right: calc(20px - 50vw);
     width: 129px;
     height: auto;
     pointer-events: none;
     z-index: 2;
-    
+
     @include tablet {
-      left: auto;
       right: -64px;
       bottom: 0px;
     }
 
     @include desktop {
-      right: auto;
       left: -64px;
-      width: 129px;
       bottom: 85px;
     }
   }
@@ -95,7 +132,7 @@
     text-align: center;
     // Mobile: push content below the photo
     // Photo height at 174px wide ≈ 281px, header ≈ 96px → start below photo
-    padding-top: 300px;
+    padding-top: 423px;
 
     @include tablet {
       text-align: left;
@@ -106,30 +143,58 @@
   &__content {
     @include tablet {
       max-width: 445px;
-      padding-top: 90px;
+      padding-top: 151px;
     }
 
     @include desktop {
       max-width: 706px;
-      padding-top: 127px;
+      padding-top: 198px;
     }
   }
 
   &__title {
+    z-index: 5;
     @include heading-xl;
     margin-bottom: 24px;
 
     @include tablet {
-      margin-bottom: 34px;
+      margin-bottom: 60px;
     }
 
     @include desktop {
       margin-bottom: 43px;
     }
+
+    .tablet-break {
+      display: none;
+    }
+
+    @media (min-width: 768px) and (max-width: 1200px) {
+      .tablet-break {
+        display: block;
+      }
+    }
+
   }
 
   &__name {
-    border-bottom: 4px solid $color-green;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background-color: $color-green;
+      z-index: -2;
+      @include tablet {
+        bottom: 6px;
+        height: 6px;
+      }
+    }
+
   }
 
   &__description {

@@ -34,7 +34,7 @@
     font-weight: 700;
     line-height: 32px;
 
-    @include desktop {
+    @include tablet {
       font-size: 32px;
       line-height: 32px;
       letter-spacing: -0.44px;
@@ -45,17 +45,28 @@
     display: flex;
     align-items: center;
     gap: 26px;
+
+    @include tablet {
+      gap: 32px;
+    }
+    
+    @include desktop {
+      margin-right: 30px;
+    }
   }
 
   &__social-list a {
     display: inline-flex;
 
-    &:hover svg path {
-      fill: $color-green;
+    img {
+      transition: filter 0.3s ease;
+      @include tablet {
+        width: 25px;
+      }
     }
-  }
 
-  &__social-list svg path {
-    transition: fill 0.3s ease;
+    &:hover img {
+      filter: brightness(0) saturate(100%) invert(76%) sepia(44%) saturate(522%) hue-rotate(101deg) brightness(92%) contrast(92%);
+    }
   }
 }
