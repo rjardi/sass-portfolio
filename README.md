@@ -6,7 +6,7 @@ Sitio web de portfolio personal construido con Vite, HTML y Sass.
 
 1. Clona el repositorio:
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/rjardi/sass-portfolio
 cd sass-porfolio
 ```
 
